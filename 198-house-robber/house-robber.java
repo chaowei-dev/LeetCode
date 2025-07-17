@@ -1,13 +1,16 @@
 class Solution {
     public int rob(int[] nums) {
-        int rob1 = 0, rob2 = 0;
+        int prevPrevMax = 0;
+        int prevMax = 0;
 
         for (int num : nums) {
-            int temp = Math.max(num + rob1, rob2);
-            rob1 = rob2;
-            rob2 = temp;
+            int currMax = Math.max(num + prevPrevMax, prevMax);
+
+            prevPrevMax = prevMax;
+            prevMax = currMax;
         }
 
-        return rob2;
+        return prevMax;
+
     }
 }
